@@ -1,0 +1,13 @@
+#
+# Image for running test suite.
+#
+FROM node:alpine
+
+RUN mkdir -p /app
+WORKDIR /app
+do
+COPY package.json /app
+COPY Makefile /app
+RUN npm install
+
+EXPOSE 3000
