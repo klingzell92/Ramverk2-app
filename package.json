@@ -14,6 +14,7 @@
     "stylelint": "node_modules/.bin/stylelint **/*.css",
     "eslint": "node_modules/.bin/eslint .",
     "jscs": "node_modules/.bin/jscs .",
+    "test-scrutinizer": "nyc --all --reporter=clover mocha test/**/*.js",
     "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
     "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
