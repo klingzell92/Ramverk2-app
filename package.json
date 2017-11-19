@@ -7,9 +7,9 @@
     "start": "node ./bin/www",
     "test": "npm run htmlhint & npm run stylelint & npm run eslint & npm run jscs & npm run unittest",
     "unittest": "nyc --reporter=html --reporter=text mocha test/**/*.js",
-    "test1": "docker-compose run node_alpine npm test",
-    "test2": "docker-compose run node_6_alpine npm test",
-    "test3": "docker-compose run node_7_alpine npm test",
+    "test1": "docker-compose run node_alpine npm run unittest",
+    "test2": "docker-compose run node_6_alpine npm run unittest",
+    "test3": "docker-compose run node_7_alpine npm run unittest",
     "htmlhint": "node_modules/.bin/htmlhint --ignore build/**,node_modules/**,coverage/** | grep -v \"Config loaded:\"",
     "stylelint": "node_modules/.bin/stylelint **/*.css",
     "eslint": "node_modules/.bin/eslint .",
@@ -40,6 +40,7 @@
     "jsonlint": "^1.6.2",
     "mocha": "^4.0.1",
     "nyc": "^11.2.1",
+    "should": "^13.1.3",
     "stylelint": "^8.2.0",
     "uglify-js": "^3.1.6"
   }
