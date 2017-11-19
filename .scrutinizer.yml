@@ -1,6 +1,11 @@
 checks:
     javascript: true
 
+filter:
+    excluded_paths:
+        - coverage/*
+
+
 build:
     dependencies:
         #before:
