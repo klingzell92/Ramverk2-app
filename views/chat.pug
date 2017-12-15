@@ -1,0 +1,30 @@
+extend layout.pug
+
+block main
+    div.main
+        h1 Chatt
+        p Det här är en chatt som använder sig utav webbsockets
+
+        Log
+        div(id="output" class="output")
+
+        form(id="form1")
+            div(class="form-group")
+                input(class="form-control" id="user" type="text" placeholder="Ange ett smeknamn")
+                input(id="connect_url" type="text" value="ws://localhost:1338/")
+                input(class="btn btn-primary" id="connect" type="button" value="Gå med i chatten")
+            div(class="form-group")
+                select(id="protocol")
+                    option(value="json") json
+                    option(value="text") text
+            div(class="form-group" id="messageContainer")
+                input(class="form-control" id="message" type="text")
+                input(class="btn btn-primary" id="send_message" type="button" value="Send message")
+            div(class="form-group")
+                input(class="btn btn-primary" id="close" type="button" value="Gå ut ur chatten")
+
+
+
+
+
+        script(src="/javascripts/client.js")
