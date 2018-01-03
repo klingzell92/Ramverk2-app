@@ -7,6 +7,7 @@
     "start": "node ./bin/www",
     "test": "npm run htmlhint & npm run stylelint & npm run eslint & npm run jscs & npm run unittest",
     "unittest": "nyc --reporter=html --reporter=text mocha test/**/*.js",
+    "start-docker": "docker-compose up express",
     "test1": "docker-compose run node_alpine npm run unittest",
     "test2": "docker-compose run node_6_alpine npm run unittest",
     "test3": "docker-compose run node_7_alpine npm run unittest",
@@ -24,6 +25,7 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "mongodb": "^2.2.33",
+    "mongodb-crud-phkl16": "^1.0.1",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "serve-favicon": "~2.4.5"

@@ -1,19 +1,15 @@
 // MongoDB
-const mongo = require("mongodb").MongoClient;
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/movie";
-var ObjectId = require('mongodb').ObjectID;
 
 var express = require('express');
+var crud = require('mongodb-crud-phkl16')(dsn, 'movie');
 var router = express.Router();
 
 
 router.get('/db', async (req, res) => {
     try {
-        const db  = await mongo.connect(dsn);
-        const col = await db.collection('movie');
-        const result = await col.find().toArray();
+        const result = await crud.getAll();
 
-        await db.close();
         res.render('db', { title: 'DB', movies: result});
     } catch (err) {
         console.log(err);
@@ -29,11 +25,7 @@ router.post('/create', async (req, res) => {
     };
 
     try {
-        const db  = await mongo.connect(dsn);
-        const col = await db.collection('movie');
-
-        col.insert(movie);
-        await db.close();
+        await crud.create(movie);
         res.redirect('/db');
     } catch (err) {
         console.log(err);
@@ -45,11 +37,8 @@ router.get('/edit/:id', async (req, res) => {
     let id = req.params.id;
 
     try {
-        const db  = await mongo.connect(dsn);
-        const col = await db.collection('movie');
-        const result = await col.find({"_id": ObjectId(id)}).toArray();
+        const result = await crud.find(id);
 
-        console.log(result[0]);
         res.render('edit', { title: 'Redigera', movie: result[0]});
     } catch (err) {
         console.log(err);
@@ -67,10 +56,7 @@ router.post('/update', async (req, res) => {
 
     console.log(id);
     try {
-        const db  = await mongo.connect(dsn);
-        const col = await db.collection('movie');
-
-        col.update({  "_id": ObjectId(id) }, movie);
+        await crud.update(id, movie);
         res.redirect('/db');
     } catch (err) {
         console.log(err);
@@ -82,10 +68,7 @@ router.get('/remove/:id', async (req, res) => {
     let id = req.params.id;
 
     try {
-        const db  = await mongo.connect(dsn);
-        const col = await db.collection('movie');
-
-        col.remove({  "_id": ObjectId(id) });
+        await crud.delete(id);
         res.redirect('/db');
     } catch (err) {
         console.log(err);
