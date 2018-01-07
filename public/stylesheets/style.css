@@ -6,3 +6,46 @@ body {
 a {
     color: #00b7ff;
 }
+
+.game {
+    cursor: pointer;
+    visibility: hidden;
+    height: 300px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.rows {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.col {
+    list-style: none;
+    float: left;
+    overflow: hidden;
+    text-decoration:none;
+    width: 100px;
+    height: 100px;
+    background: black;
+    border: 1px solid #ccc;
+    border-right: 1px solid #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.col:hover {
+    background-color: grey;
+}
+
+.disableBoard {
+    pointer-events: none;
+}
+
+.disableSquare {
+    pointer-events: none;
+}
