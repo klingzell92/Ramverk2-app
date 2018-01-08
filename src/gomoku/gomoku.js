@@ -47,7 +47,6 @@ function sendToClient(ws, numberOfClients) {
     });
 }
 
-
 /*
 Funktionen skall lägga till markör för rätt ruta till selected Array
 */
@@ -134,6 +133,10 @@ wss.on("connection", (ws) => {
 
     ws.on("close", (code, reason) => {
         console.log(`Closing connection: ${code} ${reason}`);
+        if (wss.clients.size < 2) {
+            console.log("Empty taken array");
+            selected = {};
+        }
         broadcastExcept(ws, `Client disconnected (${wss.clients.size}).`);
     });
 });

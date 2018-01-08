@@ -13,6 +13,7 @@
     let game        = document.getElementById("game");
     let main        = document.getElementById("main");
     let start       = document.getElementById("start");
+    let taken;
     //let close       = document.getElementById("close");
 
 
@@ -32,17 +33,17 @@
         element.remove();
     }
 
-    function updateBoard(takenSquares) {
+    function updateBoard() {
         console.log("updating");
-        for (var square in takenSquares) {
-            console.log(takenSquares);
+        for (var square in taken) {
+            console.log(taken);
             var squareElement = document.getElementById(square);
             squareElement.classList.add("disableSquare");
             if (squareElement.childNodes.length < 1) {
-                var para = document.createElement("p");
-                var marker = document.createTextNode(takenSquares[square]);
-                para.appendChild(marker);
-                squareElement.appendChild(para);
+                //var para = document.createElement("p");
+                var marker = document.createTextNode(taken[square]);
+                //para.appendChild(marker);
+                squareElement.appendChild(marker);
             }
         }
     }
@@ -74,6 +75,7 @@
             //console.log("Receiving message: " + event.data);
             let msg = JSON.parse(event.data);
             players = msg.players;
+            taken = msg.taken;
             console.log(msg);
             if (msg.size <= 1) {
                 addText("Väntar på motståndare", "wait");
@@ -83,7 +85,7 @@
                         removeObject("wait");
                     }
                     game.style.visibility = "visible";
-                    updateBoard(msg.taken);
+                    updateBoard();
                     if (!players[nickname]["turn"]) {
                         game.classList.add("disableBoard");
                     } else {
@@ -109,13 +111,19 @@
         } else {
             console.log("Changed turn");
             console.log(event.target.id);
+
+            if (Object.keys(taken).length >= 5) {
+                let board = new Array(3);
+                for (i=0; i <3; i++)
+                    board[i]=new Array(3);
+
+            }
             let object = {
                 type: "place",
                 player: nickname,
                 placeId: event.target.id
             };
             websocket.send(JSON.stringify(object));
-
         }
     });
 })();
