@@ -6,10 +6,6 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
 });
 
-router.get('/chat', function(req, res) {
-    res.render('chat', { title: 'Chatt' });
-});
-
 router.get('/gomoku', function(req, res) {
     res.render('gomoku', { title: 'Gomoku' });
 });

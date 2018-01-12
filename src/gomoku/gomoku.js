@@ -11,10 +11,10 @@ const WebSocket = require("ws");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({
-    server:server,
+    server: server,
     clientTracking: true
 });
-
+let gameWon = false;
 let players = {};
 let selected = {};
 
@@ -24,53 +24,102 @@ app.use(function (req, res) {
     res.send({ msg: "hello" });
 });
 
-
-function sendToClient(ws, numberOfClients) {
-    wss.clients.forEach((client) => {
-        if (numberOfClients > 1) {
-            if (client.readyState === WebSocket.OPEN) {
-                let msg = {
-                    size: numberOfClients,
-                    players:players
-                };
-                client.send(JSON.stringify(msg));
-            }
-        } else {
-            if (client == ws && client.readyState === WebSocket.OPEN) {
-                let msg = {
-                    size: numberOfClients
-                };
-                console.log(msg);
-                client.send(JSON.stringify(msg));
-            }
-        }
-    });
-}
-
 /*
 Funktionen skall lägga till markör för rätt ruta till selected Array
 */
-function placeMarker(ws, user, place) {
+function placeMarker(user, place) {
+    selected[place] = players[user]["marker"];
+    if (Object.keys(selected).length >= 5) {
+        checkWinner(user, players[user]["marker"]);
+    }
     wss.clients.forEach((client) => {
-        selected[place] = players[user]["marker"];
         let object = {
             size: wss.clients.size,
-            players:players,
-            taken:selected
-        }
+            players: players,
+            taken: selected,
+            gameWon: gameWon
+        };
         client.send(JSON.stringify(object));
     });
 }
 
-function changeTurn(ws, user) {
-    wss.clients.forEach((client) => {
-        players[user]["turn"] = false;
-        for (var player in players) {
-            if (player != user) {
-                players[player]["turn"] = true;
+function changeTurn(user) {
+    players[user]["turn"] = false;
+    for (var player in players) {
+        if (player != user) {
+            players[player]["turn"] = true;
+        }
+    }
+}
+
+function createBoard() {
+    let board = new Array(3);
+
+    for (var i=0; i <3; i++) {
+        board[i]=new Array(3);
+    }
+
+    return board;
+}
+
+function fillBoard() {
+    let board = createBoard();
+
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            for (var square in selected) {
+                var id = i + "-" + j;
+
+                if (square == id) {
+                    board[i][j] = selected[square];
+                }
             }
         }
-    });
+    }
+    return board;
+}
+
+function checkWinner(user, marker) {
+    console.log("Checking if" + user + "won!");
+    console.log(user + " marker: " + marker);
+    let board = fillBoard();
+    let points;
+
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            if (board[i][j] == marker) {
+                points += 1;
+            }
+        }
+        if (points == 3) {
+            console.log(user + " won!");
+            gameWon = true;
+        } else {
+            points = 0;
+        }
+    }
+
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            if (board[j][i] == marker) {
+                points += 1;
+            }
+        }
+        if (points == 3) {
+            console.log(user + " won!");
+            gameWon = true;
+        } else {
+            points = 0;
+        }
+    }
+
+    if (board[0][0] == marker && board[1][1] == marker && board[2][2] == marker) {
+        console.log(user + " won!");
+        gameWon = true;
+    } else if (board[0][2] == marker && board[1][1] == marker && board[2][0] == marker) {
+        console.log(user + " won!");
+        gameWon = true;
+    }
 }
 
 /**
@@ -91,14 +140,37 @@ function broadcastExcept(ws, data) {
             let msg = {
                 data: data
             };
-            client.send(JSON.stringify(msg));
 
+
+            client.send(JSON.stringify(msg));
         }
     });
     console.log(`Broadcasted data to ${clients} (${wss.clients.size}) clients.`);
 }
 
+function sendToClient(ws, numberOfClients) {
+    wss.clients.forEach((client) => {
+        if (numberOfClients > 1) {
+            if (client.readyState === WebSocket.OPEN) {
+                let msg = {
+                    size: numberOfClients,
+                    players: players
+                };
 
+                client.send(JSON.stringify(msg));
+            }
+        } else {
+            if (client == ws && client.readyState === WebSocket.OPEN) {
+                let msg = {
+                    size: numberOfClients
+                };
+
+                console.log(msg);
+                client.send(JSON.stringify(msg));
+            }
+        }
+    });
+}
 
 // Setup for websocket requests.
 // Docs: https://github.com/websockets/ws/blob/master/doc/ws.md
@@ -106,6 +178,7 @@ wss.on("connection", (ws) => {
     console.log("Connection received. Adding client.");
     ws.on("message", (message) => {
         let data = JSON.parse(message);
+
         console.log(data["type"]);
         if (data["type"] == "connect") {
             console.log("Received: %s", data);
@@ -121,7 +194,7 @@ wss.on("connection", (ws) => {
                 }
                 sendToClient(ws, wss.clients.size);
             }
-        } else if (data["type"] == "place") {
+        } else if (data["type"] === "place") {
             changeTurn(ws, data["player"]);
             placeMarker(ws, data["player"], data["placeId"]);
         }
@@ -136,6 +209,7 @@ wss.on("connection", (ws) => {
         if (wss.clients.size < 2) {
             console.log("Empty taken array");
             selected = {};
+            gameWon = false;
         }
         broadcastExcept(ws, `Client disconnected (${wss.clients.size}).`);
     });
