@@ -1,20 +1,18 @@
 checks:
     javascript: true
 
-filter:
-    excluded_paths:
-        - coverage/*
-
-
 build:
     environment:
-        mongodb: '3.2'
-        node: v8.9.1
+        mongodb: true
+
+    dependencies:
+        before:
+            command: nvm install node
+
     tests:
         override:
             -
-                #command: 'istanbul cover --report clover test.js'
-                command: 'npm run test-scrutinizer'
+                command: 'npm run test'
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
