@@ -3,7 +3,6 @@ checks:
 
 filter:
     excluded_paths:
-        - coverage/*
 
 build:
     environment:
