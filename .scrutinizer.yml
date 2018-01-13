@@ -1,6 +1,10 @@
 checks:
     javascript: true
 
+filter:
+    excluded_paths:
+        - coverage/*
+
 build:
     environment:
         mongodb: true
@@ -12,7 +16,7 @@ build:
     tests:
         override:
             -
-                command: 'npm run unittest'
+                command: 'npm run test-scrutinizer'
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
