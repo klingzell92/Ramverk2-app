@@ -3,7 +3,7 @@ var describe = mocha.describe;
 var it = mocha.it;
 
 var request = require('supertest');
-var app = require('../../app.js');
+var app = require('../app.js');
 
 
 
