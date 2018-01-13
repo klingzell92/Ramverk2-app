@@ -12,12 +12,8 @@ describe('Check routes', function() {
         request(app).get("/")
             .expect(200, done);
     });
-    it('Test the about route', function(done) {
+    it('Test the gomoku route', function(done) {
         request(app).get("/gomoku")
             .expect(200, done);
-    });
-    it('Test error route', function(done) {
-        request(app).get("/error")
-            .expect(404, done);
     });
 });
