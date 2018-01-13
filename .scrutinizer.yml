@@ -3,6 +3,8 @@ checks:
 
 filter:
     excluded_paths:
+        - coverage/*
+
 
 build:
     environment:
@@ -11,7 +13,8 @@ build:
     tests:
         override:
             -
-                command: 'npm run coverage-scrut'
+                #command: 'istanbul cover --report clover test.js'
+                command: 'npm run test-scrutinizer'
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
