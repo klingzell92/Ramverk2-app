@@ -1,5 +1,4 @@
 // MongoDB
-/*
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/movie";
 
 var express = require('express');
@@ -78,4 +77,3 @@ router.get('/remove/:id', async (req, res) => {
 });
 
 module.exports = router;
-*/
