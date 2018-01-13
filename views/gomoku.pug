@@ -4,17 +4,14 @@ block main
     div(class="main" id="main")
         h3 Gomoku
         form(id="form1")
-            div(class="form-group")
+            div(class="form-group startDiv")
                 input(class="form-control" id="nick" type="text" placeholder="Ange ett smeknamn")
                 input(class="btn btn-primary" id="start" type="button" value="Starta spel")
-
-        //button(class="btn btn-primary" id="turn" type="button") Ändra tur
-        //button(class="btn btn-primary" id="close" type="button") Lämna spelet
+        p(class="gameMessage" id="gameMessage")
     div(class="game" id="game")
         - for (var i=0; i<3; i++)
                 ul(class="rows")
                     - for (var y=0; y<3; y++)
                             - var colId = i + "-" + y
                             li(class="col" id=colId)
-
     script(src="/javascripts/gomoku.js")

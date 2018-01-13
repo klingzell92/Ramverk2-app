@@ -6,7 +6,6 @@
 const port = 1338;
 const express = require("express");
 const http = require("http");
-//const url = require("url");
 const WebSocket = require("ws");
 const app = express();
 const server = http.createServer(app);
@@ -15,8 +14,10 @@ const wss = new WebSocket.Server({
     clientTracking: true
 });
 let gameWon = false;
+let gameFull = false;
 let players = {};
 let selected = {};
+let message = "";
 
 // Answer on all http requests
 app.use(function (req, res) {
@@ -28,16 +29,27 @@ app.use(function (req, res) {
 Funktionen skall lägga till markör för rätt ruta till selected Array
 */
 function placeMarker(user, place) {
-    selected[place] = players[user]["marker"];
+    if (Object.keys(selected).length == 9) {
+        gameFull = true;
+        message = "Det blev oavgjort!";
+    } else {
+        selected[place] = players[user]["marker"];
+    }
     if (Object.keys(selected).length >= 5) {
         checkWinner(user, players[user]["marker"]);
+    }
+    if (gameWon) {
+        message = user + ' "' + players[user]["marker"] + '" vann!';
     }
     wss.clients.forEach((client) => {
         let object = {
             size: wss.clients.size,
             players: players,
             taken: selected,
-            gameWon: gameWon
+            gameWon: gameWon,
+            message: message,
+            gameIsFull: gameFull
+
         };
         client.send(JSON.stringify(object));
     });
@@ -48,6 +60,7 @@ function changeTurn(user) {
     for (var player in players) {
         if (player != user) {
             players[player]["turn"] = true;
+            message = "Väntar på " + player;
         }
     }
 }
@@ -80,8 +93,6 @@ function fillBoard() {
 }
 
 function checkWinner(user, marker) {
-    console.log("Checking if" + user + "won!");
-    console.log(user + " marker: " + marker);
     let board = fillBoard();
     let points;
 
@@ -154,7 +165,8 @@ function sendToClient(ws, numberOfClients) {
             if (client.readyState === WebSocket.OPEN) {
                 let msg = {
                     size: numberOfClients,
-                    players: players
+                    players: players,
+                    message: message
                 };
 
                 client.send(JSON.stringify(msg));
@@ -195,8 +207,8 @@ wss.on("connection", (ws) => {
                 sendToClient(ws, wss.clients.size);
             }
         } else if (data["type"] === "place") {
-            changeTurn(ws, data["player"]);
-            placeMarker(ws, data["player"], data["placeId"]);
+            changeTurn(data["player"]);
+            placeMarker(data["player"], data["placeId"]);
         }
     });
 
@@ -208,8 +220,10 @@ wss.on("connection", (ws) => {
         console.log(`Closing connection: ${code} ${reason}`);
         if (wss.clients.size < 2) {
             console.log("Empty taken array");
+            message = "";
             selected = {};
             gameWon = false;
+            gameFull = false;
         }
         broadcastExcept(ws, `Client disconnected (${wss.clients.size}).`);
     });

@@ -12,24 +12,13 @@
     let game        = document.getElementById("game");
     let main        = document.getElementById("main");
     let start       = document.getElementById("start");
+    let message     = document.getElementById("gameMessage");
     let taken;
-    //let close       = document.getElementById("close");
 
 
 
-    function addText(text, id) {
-        var para = document.createElement("p");
-        var node = document.createTextNode(text);
-
-        para.appendChild(node);
-        para.setAttribute("id", id);
-        main.appendChild(para);
-    }
-
-    function removeObject(id) {
-        var element = document.getElementById(id);
-
-        element.remove();
+    function updateMessage(msg) {
+        message.innerHTML = msg;
     }
 
     function updateBoard() {
@@ -75,14 +64,19 @@
             taken = msg.taken;
             console.log(msg);
             if (msg.size <= 1) {
-                addText("Väntar på motståndare", "wait");
+                updateMessage("Väntar på motståndare");
             } else {
                 if (msg.size < 3) {
-                    if (document.getElementById("wait")) {
-                        removeObject("wait");
-                    }
                     game.style.visibility = "visible";
                     updateBoard();
+                    updateMessage(msg.message);
+                    if (msg.gameWon) {
+                        game.classList.add("disableBoard");
+                        setTimeout(function(){ window.location="/gomoku"; }, 5000);
+                    }
+                    if (msg.gameIsFull) {
+                        setTimeout(function(){ window.location="/gomoku"; }, 5000);
+                    }
                     if (!players[nickname]["turn"]) {
                         game.classList.add("disableBoard");
                     } else {

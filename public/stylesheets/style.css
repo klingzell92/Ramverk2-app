@@ -7,6 +7,20 @@ a {
     color: #00b7ff;
 }
 
+.startDiv {
+    display: flex;
+}
+
+#nick {
+    border-radius: 0;
+    width: 70%;
+}
+
+#start {
+    border-radius: 0;
+    width: 30%;
+}
+
 .game {
     cursor: pointer;
     visibility: hidden;
