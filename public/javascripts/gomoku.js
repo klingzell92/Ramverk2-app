@@ -10,7 +10,6 @@
     let nick        = document.getElementById("nick");
     let url         = "ws://localhost:1338/";
     let game        = document.getElementById("game");
-    let main        = document.getElementById("main");
     let start       = document.getElementById("start");
     let message     = document.getElementById("gameMessage");
     let taken;
@@ -72,10 +71,14 @@
                     updateMessage(msg.message);
                     if (msg.gameWon) {
                         game.classList.add("disableBoard");
-                        setTimeout(function(){ window.location="/gomoku"; }, 5000);
+                        setTimeout(function() {
+                            window.location="/gomoku";
+                        }, 5000);
                     }
                     if (msg.gameIsFull) {
-                        setTimeout(function(){ window.location="/gomoku"; }, 5000);
+                        setTimeout(function() {
+                            window.location="/gomoku";
+                        }, 5000);
                     }
                     if (!players[nickname]["turn"]) {
                         game.classList.add("disableBoard");

@@ -51,6 +51,7 @@ function placeMarker(user, place) {
             gameIsFull: gameFull
 
         };
+
         client.send(JSON.stringify(object));
     });
 }
@@ -110,9 +111,9 @@ function checkWinner(user, marker) {
         }
     }
 
-    for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board[i].length; j++) {
-            if (board[j][i] == marker) {
+    for (var x = 0; x < board.length; x++) {
+        for (var y = 0; y < board[x].length; y++) {
+            if (board[y][x] == marker) {
                 points += 1;
             }
         }

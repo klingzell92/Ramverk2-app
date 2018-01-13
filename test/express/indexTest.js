@@ -13,8 +13,8 @@ describe('Check routes', function() {
             .expect(200, done);
     });
 
-    it('should return 404', function(done) {
-        request(app).get("/404")
-            .expect(404, done);
+    it('Checking gomoku route', function(done) {
+        request(app).get("/gomoku")
+            .expect(200, done);
     });
 });

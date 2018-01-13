@@ -12,7 +12,7 @@ build:
     tests:
         override:
             -
-                command: 'npm run test'
+                command: 'npm run unittest'
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
