@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/src/tictactoe/tictactoe.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">app/src/tictactoe</a> tictactoe.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.27% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>20/131</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.57% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.27% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/131</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Broadcast server using websockets and express.
+ */
+"use strict";
+&nbsp;
+const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/highscore";
+var crud = require('mongodb-crud-phkl16')(dsn, 'highscore');
+&nbsp;
+const port = 1338;
+const express = require("express");
+const http = require("http");
+const WebSocket = require("ws");
+const app = express();
+const server = http.createServer(app);
+const wss = new WebSocket.Server({
+    server: server,
+    clientTracking: true
+});
+let gameWon = false;
+let gameFull = false;
+let players = {};
+let selected = {};
+let message = "";
+let time = Date.now();
+&nbsp;
+// Answer on all http requests
+app.use(<span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+<span class="cstat-no" title="statement not covered" >    console.log("HTTP request on " + req.url);</span>
+<span class="cstat-no" title="statement not covered" >    res.send({ msg: "hello" });</span>
+});
+&nbsp;
+/*
+Funktionen skall lägga till markör för rätt ruta till selected Array
+*/
+function <span class="fstat-no" title="function not covered" >placeMarker(</span>user, place) {
+<span class="cstat-no" title="statement not covered" >    if (Object.keys(selected).length == 9) {</span>
+<span class="cstat-no" title="statement not covered" >        gameFull = true;</span>
+<span class="cstat-no" title="statement not covered" >        message = "Det blev oavgjort!";</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        selected[place] = players[user]["marker"];</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (Object.keys(selected).length &gt;= 5) {</span>
+<span class="cstat-no" title="statement not covered" >        checkWinner(user, players[user]["marker"]);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (gameWon) {</span>
+<span class="cstat-no" title="statement not covered" >        message = user + ' "' + players[user]["marker"] + '" vann!';</span>
+        var distance = <span class="cstat-no" title="statement not covered" >new Date().getTime() - time;</span>
+&nbsp;
+        var minutes = <span class="cstat-no" title="statement not covered" >Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));</span>
+        var seconds = <span class="cstat-no" title="statement not covered" >Math.floor((distance % (1000 * 60)) / 1000);</span>
+<span class="cstat-no" title="statement not covered" >        if (seconds &lt; 10) {</span>
+<span class="cstat-no" title="statement not covered" >          seconds = "0" + seconds;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        time = minutes + ":" + seconds;</span>
+        let score = <span class="cstat-no" title="statement not covered" >{</span>
+            name: user,
+            numberOfMoves: Object.keys(selected).length,
+            time: time
+        };
+<span class="cstat-no" title="statement not covered" >        console.log(crud);</span>
+<span class="cstat-no" title="statement not covered" >        crud.create(score);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(minutes + ":" + seconds);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    wss.clients.forEach(<span class="fstat-no" title="function not covered" >(c</span>lient) =&gt; {</span>
+        let object = <span class="cstat-no" title="statement not covered" >{</span>
+            size: wss.clients.size,
+            players: players,
+            taken: selected,
+            gameWon: gameWon,
+            message: message,
+            time: time,
+            gameIsFull: gameFull
+&nbsp;
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        client.send(JSON.stringify(object));</span>
+    });
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >changeTurn(</span>user) {
+<span class="cstat-no" title="statement not covered" >    players[user]["turn"] = false;</span>
+<span class="cstat-no" title="statement not covered" >    for (var player in players) {</span>
+<span class="cstat-no" title="statement not covered" >        if (player != user) {</span>
+<span class="cstat-no" title="statement not covered" >            players[player]["turn"] = true;</span>
+<span class="cstat-no" title="statement not covered" >            message = "Väntar på " + player;</span>
+        }
+    }
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >createBoard(</span>) {
+    let board = <span class="cstat-no" title="statement not covered" >new Array(3);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (var i=0; i &lt;3; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        board[i]=new Array(3);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return board;</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >fillBoard(</span>) {
+    let board = <span class="cstat-no" title="statement not covered" >createBoard();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; board.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        for (var j = 0; j &lt; board[i].length; j++) {</span>
+<span class="cstat-no" title="statement not covered" >            for (var square in selected) {</span>
+                var id = <span class="cstat-no" title="statement not covered" >i + "-" + j;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (square == id) {</span>
+<span class="cstat-no" title="statement not covered" >                    board[i][j] = selected[square];</span>
+                }
+            }
+        }
+    }
+<span class="cstat-no" title="statement not covered" >    return board;</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >checkWinner(</span>user, marker) {
+    let board = <span class="cstat-no" title="statement not covered" >fillBoard();</span>
+    let points;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; board.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        for (var j = 0; j &lt; board[i].length; j++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (board[i][j] == marker) {</span>
+<span class="cstat-no" title="statement not covered" >                points += 1;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        if (points == 3) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(user + " won!");</span>
+<span class="cstat-no" title="statement not covered" >            gameWon = true;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            points = 0;</span>
+        }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (var x = 0; x &lt; board.length; x++) {</span>
+<span class="cstat-no" title="statement not covered" >        for (var y = 0; y &lt; board[x].length; y++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (board[y][x] == marker) {</span>
+<span class="cstat-no" title="statement not covered" >                points += 1;</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        if (points == 3) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(user + " won!");</span>
+<span class="cstat-no" title="statement not covered" >            gameWon = true;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            points = 0;</span>
+        }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (board[0][0] == marker &amp;&amp; board[1][1] == marker &amp;&amp; board[2][2] == marker) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(user + " won!");</span>
+<span class="cstat-no" title="statement not covered" >        gameWon = true;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (board[0][2] == marker &amp;&amp; board[1][1] == marker &amp;&amp; board[2][0] == marker) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(user + " won!");</span>
+<span class="cstat-no" title="statement not covered" >        gameWon = true;</span>
+    }
+}
+&nbsp;
+/**
+ * Broadcast data to everyone except one self (ws).
+ *
+ * @param {WebSocket} ws   The current websocket.
+ * @param {string}    data The data to send.
+ *
+ * @return {void}
+ */
+function <span class="fstat-no" title="function not covered" >broadcastExcept(</span>ws, data) {
+    let clients = <span class="cstat-no" title="statement not covered" >0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    wss.clients.forEach(<span class="fstat-no" title="function not covered" >(c</span>lient) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (client !== ws &amp;&amp; client.readyState === WebSocket.OPEN) {</span>
+<span class="cstat-no" title="statement not covered" >            clients++;</span>
+<span class="cstat-no" title="statement not covered" >            console.log(data);</span>
+            let msg = <span class="cstat-no" title="statement not covered" >{</span>
+                data: data
+            };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            client.send(JSON.stringify(msg));</span>
+        }
+    });
+<span class="cstat-no" title="statement not covered" >    console.log(`Broadcasted data to ${clients} (${wss.clients.size}) clients.`);</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >sendToClient(</span>ws, numberOfClients) {
+<span class="cstat-no" title="statement not covered" >    wss.clients.forEach(<span class="fstat-no" title="function not covered" >(c</span>lient) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (numberOfClients &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >            if (client.readyState === WebSocket.OPEN) {</span>
+                let msg = <span class="cstat-no" title="statement not covered" >{</span>
+                    size: numberOfClients,
+                    players: players,
+                    message: message
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                client.send(JSON.stringify(msg));</span>
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            if (client == ws &amp;&amp; client.readyState === WebSocket.OPEN) {</span>
+                let msg = <span class="cstat-no" title="statement not covered" >{</span>
+                    size: numberOfClients
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                console.log(msg);</span>
+<span class="cstat-no" title="statement not covered" >                client.send(JSON.stringify(msg));</span>
+            }
+        }
+    });
+}
+&nbsp;
+// Setup for websocket requests.
+// Docs: https://github.com/websockets/ws/blob/master/doc/ws.md
+wss.on("connection", <span class="fstat-no" title="function not covered" >(w</span>s) =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log("Connection received. Adding client.");</span>
+<span class="cstat-no" title="statement not covered" >    ws.on("message", <span class="fstat-no" title="function not covered" >(m</span>essage) =&gt; {</span>
+        let data = <span class="cstat-no" title="statement not covered" >JSON.parse(message);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log(data["type"]);</span>
+<span class="cstat-no" title="statement not covered" >        if (data["type"] == "connect") {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Received: %s", data);</span>
+<span class="cstat-no" title="statement not covered" >            if (wss.clients.size &lt;= 2) {</span>
+<span class="cstat-no" title="statement not covered" >                if (wss.clients.size &lt;=1) {</span>
+<span class="cstat-no" title="statement not covered" >                    players[data["player"]] = {};</span>
+<span class="cstat-no" title="statement not covered" >                    players[data["player"]]["turn"] = true;</span>
+<span class="cstat-no" title="statement not covered" >                    players[data["player"]]["marker"] = "X";</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    players[data["player"]] = {};</span>
+<span class="cstat-no" title="statement not covered" >                    players[data["player"]]["turn"] = false;</span>
+<span class="cstat-no" title="statement not covered" >                    players[data["player"]]["marker"] = "O";</span>
+                }
+<span class="cstat-no" title="statement not covered" >                sendToClient(ws, wss.clients.size);</span>
+            }
+        } else <span class="cstat-no" title="statement not covered" >if (data["type"] === "place") {</span>
+<span class="cstat-no" title="statement not covered" >            if (Object.keys(selected).length == 0) {</span>
+<span class="cstat-no" title="statement not covered" >                time = new Date().getTime();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            changeTurn(data["player"]);</span>
+<span class="cstat-no" title="statement not covered" >            placeMarker(data["player"], data["placeId"]);</span>
+        }
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    ws.on("error", <span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(`Server error: ${error}`);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    ws.on("close", <span class="fstat-no" title="function not covered" >(c</span>ode, reason) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(`Closing connection: ${code} ${reason}`);</span>
+<span class="cstat-no" title="statement not covered" >        if (wss.clients.size &lt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Empty taken array");</span>
+<span class="cstat-no" title="statement not covered" >            message = "";</span>
+<span class="cstat-no" title="statement not covered" >            selected = {};</span>
+<span class="cstat-no" title="statement not covered" >            gameWon = false;</span>
+<span class="cstat-no" title="statement not covered" >            gameFull = false;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        broadcastExcept(ws, `Client disconnected (${wss.clients.size}).`);</span>
+    });
+});
+&nbsp;
+&nbsp;
+&nbsp;
+// Startup server
+server.listen(port, () =&gt; {
+    console.log(`Server is listening on ${port}`);
+});
+&nbsp;
+// Export module
+module.exports = server;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 15 2018 17:34:56 GMT+0100 (Västeuropa, normaltid)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>
