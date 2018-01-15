@@ -17,13 +17,12 @@ build:
         node: 8.9.1
 
     dependencies:
-        #before:
-            #- npm install istanbul   # or add it as part of your package.json
+        before:
+            command: nvm install node
 
     tests:
         override:
             -
-                #command: 'istanbul cover --report clover test.js'
                 command: 'npm run test-scrutinizer'
                 coverage:
                     file: 'build/coverage/clover.xml'
