@@ -13,6 +13,7 @@ describe("Testing websocket", function() {
     before(async function() {
         await tictactoeServer.listen();
     });
+
     after(async function() {
         await tictactoeServer.close(function() {
             console.log('Closing the server');
@@ -64,4 +65,4 @@ describe('Test connecting player2.', function () {
     });
 });
 */
-//tictactoeServer.close();
+tictactoeServer.close();
