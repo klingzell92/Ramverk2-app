@@ -7,11 +7,11 @@ const WebSocket = require("ws");
 const it = mocha.it;
 const tictactoeServer = require('../../src/tictactoe/tictactoe.js');
 let url = "ws://localhost:1338/";
-let websocket =  new WebSocket(url);
+
 describe("Testing websocket", function() {
     var websocket;
     before(async function() {
-        websocket = await new WebSocket(url);
+        await tictactoeServer.listen();
     });
 
     after(async function() {
@@ -21,7 +21,7 @@ describe("Testing websocket", function() {
     });
     describe('Test connecting player1.', function () {
         it('Add player1', (done) => {
-            console.log(websocket.readyState);
+            websocket = new WebSocket(url);
             websocket.onopen = () => {
                 console.log("The websocket is now open.");
                 let object = {
@@ -41,3 +41,4 @@ describe("Testing websocket", function() {
         });
     });
 });
+tictactoeServer.close();
