@@ -62,7 +62,7 @@ services:
             - "3006:3000"
     express:
         environment:
-            - DBWEBB_DSN=mongodb://mongodb:27017/movie
+            - DBWEBB_DSN=mongodb://mongodb:27017/highscore
         links:
             - mongodb
         build:

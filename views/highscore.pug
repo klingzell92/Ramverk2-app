@@ -1,0 +1,17 @@
+extend layout.pug
+
+block main
+    div.main
+        h1 Highscore
+        table(class="table table-striped table-hover table-bordered")
+            thead(class="thead-inverse")
+                tr
+                    th Namn
+                    th Antal drag
+                    th Tid
+            tbody
+                for score in scores
+                    tr
+                        td= score.name
+                        td= score.numberOfMoves
+                        td= score.time

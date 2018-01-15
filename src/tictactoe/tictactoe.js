@@ -3,6 +3,9 @@
  */
 "use strict";
 
+const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/highscore";
+var crud = require('mongodb-crud-phkl16')(dsn, 'highscore');
+
 const port = 1338;
 const express = require("express");
 const http = require("http");
@@ -18,6 +21,7 @@ let gameFull = false;
 let players = {};
 let selected = {};
 let message = "";
+let time = Date.now();
 
 // Answer on all http requests
 app.use(function (req, res) {
@@ -40,6 +44,22 @@ function placeMarker(user, place) {
     }
     if (gameWon) {
         message = user + ' "' + players[user]["marker"] + '" vann!';
+        var distance = new Date().getTime() - time;
+
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        time = minutes + ":" + seconds;
+        let score = {
+            name: user,
+            numberOfMoves: Object.keys(selected).length,
+            time: time
+        };
+        console.log(crud);
+        crud.create(score);
+        console.log(minutes + ":" + seconds);
     }
     wss.clients.forEach((client) => {
         let object = {
@@ -48,6 +68,7 @@ function placeMarker(user, place) {
             taken: selected,
             gameWon: gameWon,
             message: message,
+            time: time,
             gameIsFull: gameFull
 
         };
@@ -208,6 +229,9 @@ wss.on("connection", (ws) => {
                 sendToClient(ws, wss.clients.size);
             }
         } else if (data["type"] === "place") {
+            if (Object.keys(selected).length == 0) {
+                time = new Date().getTime();
+            }
             changeTurn(data["player"]);
             placeMarker(data["player"], data["placeId"]);
         }
