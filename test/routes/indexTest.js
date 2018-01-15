@@ -12,9 +12,4 @@ describe('Check routes', function() {
         request(app).get("/")
             .expect(200, done);
     });
-
-    it('Checking gomoku route', function(done) {
-        request(app).get("/gomoku")
-            .expect(200, done);
-    });
 });
