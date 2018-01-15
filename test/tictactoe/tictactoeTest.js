@@ -11,7 +11,6 @@ let websocket =  new WebSocket(url);
 describe("Testing websocket", function() {
     var websocket;
     before(async function() {
-        await tictactoeServer.listen();
         websocket = await new WebSocket(url);
     });
 
