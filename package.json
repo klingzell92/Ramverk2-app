@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "start-tictactoe": "node src/tictactoe/tictactoe.js",
-    "start-db": "docker-compose run mongodb",
+    "start-db": "mongod",
     "test": "npm run htmlhint & npm run stylelint & npm run eslint & npm run jscs & npm run unittest",
     "unittest": "nyc --reporter=html --reporter=text mocha --exit test/**/*.js",
     "start-docker": "docker-compose up express",
