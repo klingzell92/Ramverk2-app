@@ -9,6 +9,7 @@ var router = express.Router();
 router.get('/highscore', async (req, res) => {
     try {
         const result = await crud.getAll();
+
         res.render('highscore', { title: 'Highscore', scores: result});
     } catch (err) {
         console.log(err);

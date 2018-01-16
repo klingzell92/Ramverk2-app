@@ -48,8 +48,9 @@ function placeMarker(user, place) {
 
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
         if (seconds < 10) {
-          seconds = "0" + seconds;
+            seconds = "0" + seconds;
         }
         time = minutes + ":" + seconds;
         let score = {
@@ -57,6 +58,7 @@ function placeMarker(user, place) {
             numberOfMoves: Object.keys(selected).length,
             time: time
         };
+
         console.log(crud);
         crud.create(score);
         console.log(minutes + ":" + seconds);

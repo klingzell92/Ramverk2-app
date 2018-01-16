@@ -1,5 +1,9 @@
+html {
+    background-color: black;
+}
+
 body {
-    padding: 50px;
+    margin-left: 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -21,12 +25,27 @@ a {
     width: 30%;
 }
 
+.main-wrap {
+    min-height: 60vh;
+}
+
+.main {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .game {
+    margin: auto;
     cursor: pointer;
     visibility: hidden;
     height: 300px;
     width: 300px;
     margin-bottom: 20px;
+}
+
+.gameMessage {
+    text-align: center;
 }
 
 .rows {
@@ -48,8 +67,26 @@ a {
     text-transform: uppercase;
     text-align: center;
     padding-top: 20px;
+    font-size: 3em;
+    color: white;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.highscore th {
+    text-align: center;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2.5em;
+    border-top: 1px solid #ccc;
+    background-color: black;
+    color: #fff;
+}
+
+.site-footer a {
+    color: #fff;
 }
 
 .col:hover {

@@ -73,12 +73,12 @@
                         console.log(msg.time);
                         game.classList.add("disableBoard");
                         setTimeout(function() {
-                            window.location="/tictactoe";
+                            window.location="/";
                         }, 5000);
                     }
                     if (msg.gameIsFull) {
                         setTimeout(function() {
-                            window.location="/tictactoe";
+                            window.location="/";
                         }, 5000);
                     }
                     if (!players[nickname]["turn"]) {

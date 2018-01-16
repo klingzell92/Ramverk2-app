@@ -10,6 +10,7 @@ let url = "ws://localhost:1338/";
 
 describe("Testing websocket", function() {
     var websocket;
+
     before(async function() {
         await tictactoeServer.listen();
     });
@@ -33,8 +34,9 @@ describe("Testing websocket", function() {
             };
             websocket.onmessage = (event) => {
                 let data = JSON.parse(event.data);
+
                 if (data.size === 1) {
-                    assert.equal(data.size, 1)
+                    assert.equal(data.size, 1);
                 }
             };
             done();

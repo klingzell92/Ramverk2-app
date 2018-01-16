@@ -1,13 +1,16 @@
 {
   "name": "app",
-  "version": "0.0.0",
+  "version": "3.0.2",
   "author": "Philip Klingzell",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start-tictactoe": "node src/tictactoe/tictactoe.js",
+    "start-db": "docker-compose run mongodb",
     "test": "npm run htmlhint & npm run stylelint & npm run eslint & npm run jscs & npm run unittest",
     "unittest": "nyc --reporter=html --reporter=text mocha --exit test/**/*.js",
     "start-docker": "docker-compose up express",
+    "stop-docker": "docker-compose down",
     "test1": "docker-compose run node_alpine npm run unittest",
     "test2": "docker-compose run node_6_alpine npm run unittest",
     "test3": "docker-compose run node_7_alpine npm run unittest",
