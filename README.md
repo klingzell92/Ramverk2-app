@@ -35,6 +35,11 @@ För att starta servern utan MongoDB så kör man:
 ```shell
 npm start
 ```
+För att starta MongoDB  så kör man:
+
+```shell
+npm run start-db
+```
 
 Och för att starta tictactoe servern så kör man:
 
@@ -81,11 +86,11 @@ För att köra testerna utan docker:
 För att köra testerna i olika versioner utav node i docker så kör man:
 
 ```shell
- npm run test1
+ npm run test-docker
 
- npm run test2
+ npm run test-docker2
 
- npm run test3
+ npm run test-docker3
 ```
 För att se kodtäckningen i webbläsaren så kan man gå till coverage/index.html
 
